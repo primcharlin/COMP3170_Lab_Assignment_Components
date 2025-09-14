@@ -1,0 +1,154 @@
+/* * {
+    box-sizing: border-box;
+}
+
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+.app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 1000;
+    padding: 1em;
+    color: teal;
+    background: pink;
+    border-bottom: 5px solid black;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: Helvetica, sans-serif;
+}
+
+h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+
+.book .image img {
+    width: 100%;
+}
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+} */
+
+/* Layout basics */
+/* App.css */
+
+/* รีเซ็ตพื้นฐานให้เต็มจอจริง ๆ */
+html,
+body,
+#root {
+    height: 100%;
+}
+body {
+    margin: 0;
+}
+
+/* ตัวห่อทั้งหมด */
+.app {
+    font-family: Arial, sans-serif;
+    background: #f8f8f8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* ถ้า header fixed สูง ~72px ให้เผื่อพื้นที่ด้านบน */
+    --header-h: 72px;
+    padding-top: var(--header-h);
+}
+
+/* header – แนะนำใช้ width:100% แทน 100vw เพื่อไม่ให้เกิดสกรอลล์แนวนอน */
+.app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; /* <— แก้จาก 100vw */
+    z-index: 1000;
+    padding: 1em;
+    color: teal;
+    background: pink;
+    border-bottom: 5px solid black;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: Helvetica, sans-serif;
+    height: var(--header-h);
+}
+
+/* เนื้อหา */
+.content {
+    flex: 1; /* <— ดันให้กินที่ว่างที่เหลือ */
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 คอลัมน์ */
+    gap: 2rem;
+    padding: 0 2em 2em;
+} /* <— ปิดปีกกาให้เรียบร้อย !! */
+
+/* การ์ดหนังสือ */
+.book {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+    border: 1px solid #3a4660;
+    /* เอาความกว้าง/สูงคงที่ออก ถ้าอยากให้ยืดหยุ่นกับกริด
+     ถ้าจะคุมขนาด ค่อยใส่ max-width/auto-height แทน */
+    /* width: 200px;
+  height: 300px; */
+    padding: 0.4rem;
+}
+.book:hover {
+    transform: translateY(-4px);
+}
+
+.image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.book.featured {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    padding: 1rem;
+}
+
+.meta {
+    padding: 1rem;
+}
+.title {
+    margin: 0 0 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #222;
+}
+.subtitle {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+.price {
+    font-weight: 700;
+    color: #008000;
+}
+
+/* footer */
+.footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+}
